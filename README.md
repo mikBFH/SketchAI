@@ -1,6 +1,6 @@
 # SketchAI: Swift-based Version 🎨✨
 
-<img src="https://github.com/mikBFH/SketchAI/blob/5264f30350fb46365818182986f50a594329bd01/SketchAILogo.png" width="200" alt="SketchAI Logo">
+<img src="SketchLogo.png" width="200" alt="SketchAI Logo">
 
 ![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
