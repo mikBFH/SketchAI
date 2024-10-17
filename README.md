@@ -43,22 +43,6 @@ Here is the initial aim to accomplish:
 
 - [ ] Create basic UI layout - Have the canvas, undo, redos and Apple pencil working etc
 
-## Project Timeline
-
-```mermaid
-gantt
-    title SketchAI Development Timeline
-    dateFormat  YYYY-MM-DD
-    section Phase 1
-    Project Setup           :active,  des1, 2023-10-19, 3d
-    Basic UI Implementation :         des2, 2023-10-22, 5d
-    section Phase 2
-    Core Drawing Features   :         des3, 2023-10-27, 10d
-    AI Integration Research :         des4, 2023-11-06, 7d
-    section Phase 3
-    AI Implementation       :         des5, 2023-11-13, 14d
-    Testing & Refinement    :         des6, 2023-11-27, 10d
-    Launch Preparation      :         des7, 2023-12-07, 7d
 
 ## Getting Started
 
