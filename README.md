@@ -1,6 +1,6 @@
 # SketchAI: Swift-based Version 🎨✨
 
-[View SketchAI Logo](SketchAILogo.pdf)
+<img src="https://github.com/YourUsername/YourRepo/raw/main/SketchAILogo.png" width="200" alt="SketchAI Logo">
 
 ![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
@@ -9,7 +9,7 @@
 
 SketchAI is a Sketch Based AI Image generation tool iOS app that combines the power of sketching with AI image 
 generation. Built using Swift and optimized for iPad with Apple Pencil support, this 
-tool aims to improve the creative process for artists and designers.
+app aims to improve the creative process for artists and designers.
 
 ## Current Status
 
@@ -39,11 +39,9 @@ Legend:
 ## Weekend Sprint: October 19-20, 2024
 
 This weekend, I am focusing on setting up the project and planning the core drawing functionality of the app. 
-Here's are the initial aims to accomplish:
-
+Here is the initial aim to accomplish:
 
 - [ ] Create basic UI layout - Have the canvas, undo, redos and Apple pencil working etc
-
 
 ## Project Timeline
 
