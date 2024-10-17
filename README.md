@@ -13,29 +13,36 @@ tool aims to improve the creative process for artists and designers.
 
 ## Current Status
 
-| Done | To Do |
-|:----:|:-----:|
-| 🟢 Project planning | 🔴 Basic canvas implementation |
-| | 🔴 Apple Pencil support |
-| | 🔴 Undo/redo functionality |
-| | 🔴 Clear canvas option |
-| | 🔴 Color palette |
-| | 🔴 Stroke size options |
-| | 🔴 Basic shape tools |
-| | 🔴 Eraser tool |
-| | 🔴 Text input field for prompts |
-| | 🔴 Save/load feature |
-| | 🔴 AI integration |
-| | 🔴 Advanced shape tools |
-| | 🔴 Image generation features |
+| Feature | Status |
+|---------|:------:|
+| Project planning | ✅ |
+| Basic canvas implementation | 🚧 |
+| Apple Pencil support | 🚧 |
+| Undo/redo functionality | 📝 |
+| Clear canvas option | 📝 |
+| Color palette | 📝 |
+| Stroke size options | 📝 |
+| Basic shape tools | 📝 |
+| Eraser tool | 📝 |
+| Text input field for prompts | 📝 |
+| Save/load feature | 📝 |
+| AI integration | 🔮 |
+| Advanced shape tools | 🔮 |
+| Image generation features | 🔮 |
+
+Legend:
+✅ - Completed
+🚧 - In Progress
+📝 - Planned
+🔮 - Future Feature
 
 ## Weekend Sprint: October 19-20, 2024
 
 This weekend, I am focusing on setting up the project and planning the core drawing functionality of the app. 
 Here's are the initial aims to accomplish:
 
-- [ ] Set up Xcode project for iOS (iPad) 
-- [ ] Create basic UI layout - Have the canvas, undo, redos etc
+
+- [ ] Create basic UI layout - Have the canvas, undo, redos and Apple pencil working etc
 
 
 ## Project Timeline
