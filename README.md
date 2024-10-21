@@ -42,6 +42,7 @@ This weekend, I am focusing on setting up the project and planning the core draw
 Here is the initial aim to accomplish:
 
 - [ ] Create basic UI layout - Have the canvas, undo, redos and Apple pencil working etc
+- [ ] Continuing with the work on Monday 21 October 
 
 
 ## Getting Started
