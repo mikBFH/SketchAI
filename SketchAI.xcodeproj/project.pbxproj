@@ -1,0 +1,638 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		67AD05142CC773DB00E5EA63 /* SketchAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD05132CC773DB00E5EA63 /* SketchAIApp.swift */; };
+		67AD05162CC773DB00E5EA63 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD05152CC773DB00E5EA63 /* Persistence.swift */; };
+		67AD05192CC773DB00E5EA63 /* SketchAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67AD05172CC773DB00E5EA63 /* SketchAI.xcdatamodeld */; };
+		67AD051B2CC773DB00E5EA63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD051A2CC773DB00E5EA63 /* ContentView.swift */; };
+		67AD051D2CC773DC00E5EA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AD051C2CC773DC00E5EA63 /* Assets.xcassets */; };
+		67AD05212CC773DC00E5EA63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AD05202CC773DC00E5EA63 /* Preview Assets.xcassets */; };
+		67AD052B2CC773DC00E5EA63 /* SketchAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD052A2CC773DC00E5EA63 /* SketchAITests.swift */; };
+		67AD05352CC773DC00E5EA63 /* SketchAIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD05342CC773DC00E5EA63 /* SketchAIUITests.swift */; };
+		67AD05372CC773DC00E5EA63 /* SketchAIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AD05362CC773DC00E5EA63 /* SketchAIUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		67AD05272CC773DC00E5EA63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67AD05082CC773DB00E5EA63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67AD050F2CC773DB00E5EA63;
+			remoteInfo = SketchAI;
+		};
+		67AD05312CC773DC00E5EA63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67AD05082CC773DB00E5EA63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67AD050F2CC773DB00E5EA63;
+			remoteInfo = SketchAI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		67AD05102CC773DB00E5EA63 /* SketchAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AD05132CC773DB00E5EA63 /* SketchAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchAIApp.swift; sourceTree = "<group>"; };
+		67AD05152CC773DB00E5EA63 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		67AD05182CC773DB00E5EA63 /* SketchAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchAI.xcdatamodel; sourceTree = "<group>"; };
+		67AD051A2CC773DB00E5EA63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		67AD051C2CC773DC00E5EA63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		67AD051E2CC773DC00E5EA63 /* SketchAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SketchAI.entitlements; sourceTree = "<group>"; };
+		67AD05202CC773DC00E5EA63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		67AD05262CC773DC00E5EA63 /* SketchAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SketchAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AD052A2CC773DC00E5EA63 /* SketchAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchAITests.swift; sourceTree = "<group>"; };
+		67AD05302CC773DC00E5EA63 /* SketchAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SketchAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AD05342CC773DC00E5EA63 /* SketchAIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchAIUITests.swift; sourceTree = "<group>"; };
+		67AD05362CC773DC00E5EA63 /* SketchAIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchAIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67AD050D2CC773DB00E5EA63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD05232CC773DC00E5EA63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD052D2CC773DC00E5EA63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67AD05072CC773DB00E5EA63 = {
+			isa = PBXGroup;
+			children = (
+				67AD05122CC773DB00E5EA63 /* SketchAI */,
+				67AD05292CC773DC00E5EA63 /* SketchAITests */,
+				67AD05332CC773DC00E5EA63 /* SketchAIUITests */,
+				67AD05112CC773DB00E5EA63 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		67AD05112CC773DB00E5EA63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67AD05102CC773DB00E5EA63 /* SketchAI.app */,
+				67AD05262CC773DC00E5EA63 /* SketchAITests.xctest */,
+				67AD05302CC773DC00E5EA63 /* SketchAIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67AD05122CC773DB00E5EA63 /* SketchAI */ = {
+			isa = PBXGroup;
+			children = (
+				67AD05132CC773DB00E5EA63 /* SketchAIApp.swift */,
+				67AD05152CC773DB00E5EA63 /* Persistence.swift */,
+				67AD051A2CC773DB00E5EA63 /* ContentView.swift */,
+				67AD051C2CC773DC00E5EA63 /* Assets.xcassets */,
+				67AD051E2CC773DC00E5EA63 /* SketchAI.entitlements */,
+				67AD05172CC773DB00E5EA63 /* SketchAI.xcdatamodeld */,
+				67AD051F2CC773DC00E5EA63 /* Preview Content */,
+			);
+			path = SketchAI;
+			sourceTree = "<group>";
+		};
+		67AD051F2CC773DC00E5EA63 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				67AD05202CC773DC00E5EA63 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		67AD05292CC773DC00E5EA63 /* SketchAITests */ = {
+			isa = PBXGroup;
+			children = (
+				67AD052A2CC773DC00E5EA63 /* SketchAITests.swift */,
+			);
+			path = SketchAITests;
+			sourceTree = "<group>";
+		};
+		67AD05332CC773DC00E5EA63 /* SketchAIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				67AD05342CC773DC00E5EA63 /* SketchAIUITests.swift */,
+				67AD05362CC773DC00E5EA63 /* SketchAIUITestsLaunchTests.swift */,
+			);
+			path = SketchAIUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67AD050F2CC773DB00E5EA63 /* SketchAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67AD053A2CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAI" */;
+			buildPhases = (
+				67AD050C2CC773DB00E5EA63 /* Sources */,
+				67AD050D2CC773DB00E5EA63 /* Frameworks */,
+				67AD050E2CC773DB00E5EA63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SketchAI;
+			productName = SketchAI;
+			productReference = 67AD05102CC773DB00E5EA63 /* SketchAI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		67AD05252CC773DC00E5EA63 /* SketchAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67AD053D2CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAITests" */;
+			buildPhases = (
+				67AD05222CC773DC00E5EA63 /* Sources */,
+				67AD05232CC773DC00E5EA63 /* Frameworks */,
+				67AD05242CC773DC00E5EA63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67AD05282CC773DC00E5EA63 /* PBXTargetDependency */,
+			);
+			name = SketchAITests;
+			productName = SketchAITests;
+			productReference = 67AD05262CC773DC00E5EA63 /* SketchAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		67AD052F2CC773DC00E5EA63 /* SketchAIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67AD05402CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAIUITests" */;
+			buildPhases = (
+				67AD052C2CC773DC00E5EA63 /* Sources */,
+				67AD052D2CC773DC00E5EA63 /* Frameworks */,
+				67AD052E2CC773DC00E5EA63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67AD05322CC773DC00E5EA63 /* PBXTargetDependency */,
+			);
+			name = SketchAIUITests;
+			productName = SketchAIUITests;
+			productReference = 67AD05302CC773DC00E5EA63 /* SketchAIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67AD05082CC773DB00E5EA63 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					67AD050F2CC773DB00E5EA63 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					67AD05252CC773DC00E5EA63 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 67AD050F2CC773DB00E5EA63;
+					};
+					67AD052F2CC773DC00E5EA63 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 67AD050F2CC773DB00E5EA63;
+					};
+				};
+			};
+			buildConfigurationList = 67AD050B2CC773DB00E5EA63 /* Build configuration list for PBXProject "SketchAI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 67AD05072CC773DB00E5EA63;
+			productRefGroup = 67AD05112CC773DB00E5EA63 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67AD050F2CC773DB00E5EA63 /* SketchAI */,
+				67AD05252CC773DC00E5EA63 /* SketchAITests */,
+				67AD052F2CC773DC00E5EA63 /* SketchAIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67AD050E2CC773DB00E5EA63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD05212CC773DC00E5EA63 /* Preview Assets.xcassets in Resources */,
+				67AD051D2CC773DC00E5EA63 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD05242CC773DC00E5EA63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD052E2CC773DC00E5EA63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67AD050C2CC773DB00E5EA63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD05192CC773DB00E5EA63 /* SketchAI.xcdatamodeld in Sources */,
+				67AD05142CC773DB00E5EA63 /* SketchAIApp.swift in Sources */,
+				67AD051B2CC773DB00E5EA63 /* ContentView.swift in Sources */,
+				67AD05162CC773DB00E5EA63 /* Persistence.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD05222CC773DC00E5EA63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD052B2CC773DC00E5EA63 /* SketchAITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AD052C2CC773DC00E5EA63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67AD05372CC773DC00E5EA63 /* SketchAIUITestsLaunchTests.swift in Sources */,
+				67AD05352CC773DC00E5EA63 /* SketchAIUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		67AD05282CC773DC00E5EA63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67AD050F2CC773DB00E5EA63 /* SketchAI */;
+			targetProxy = 67AD05272CC773DC00E5EA63 /* PBXContainerItemProxy */;
+		};
+		67AD05322CC773DC00E5EA63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67AD050F2CC773DB00E5EA63 /* SketchAI */;
+			targetProxy = 67AD05312CC773DC00E5EA63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		67AD05382CC773DC00E5EA63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		67AD05392CC773DC00E5EA63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		67AD053B2CC773DC00E5EA63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SketchAI/SketchAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SketchAI/Preview Content\"";
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		67AD053C2CC773DC00E5EA63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SketchAI/SketchAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SketchAI/Preview Content\"";
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		67AD053E2CC773DC00E5EA63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SketchAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SketchAI";
+			};
+			name = Debug;
+		};
+		67AD053F2CC773DC00E5EA63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SketchAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SketchAI";
+			};
+			name = Release;
+		};
+		67AD05412CC773DC00E5EA63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SketchAI;
+			};
+			name = Debug;
+		};
+		67AD05422CC773DC00E5EA63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3F5CSD8A2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kollg.SketchAIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SketchAI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67AD050B2CC773DB00E5EA63 /* Build configuration list for PBXProject "SketchAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD05382CC773DC00E5EA63 /* Debug */,
+				67AD05392CC773DC00E5EA63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67AD053A2CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD053B2CC773DC00E5EA63 /* Debug */,
+				67AD053C2CC773DC00E5EA63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67AD053D2CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD053E2CC773DC00E5EA63 /* Debug */,
+				67AD053F2CC773DC00E5EA63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67AD05402CC773DC00E5EA63 /* Build configuration list for PBXNativeTarget "SketchAIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AD05412CC773DC00E5EA63 /* Debug */,
+				67AD05422CC773DC00E5EA63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		67AD05172CC773DB00E5EA63 /* SketchAI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				67AD05182CC773DB00E5EA63 /* SketchAI.xcdatamodel */,
+			);
+			currentVersion = 67AD05182CC773DB00E5EA63 /* SketchAI.xcdatamodel */;
+			path = SketchAI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 67AD05082CC773DB00E5EA63 /* Project object */;
+}
