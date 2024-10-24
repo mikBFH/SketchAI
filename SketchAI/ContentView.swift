@@ -7,35 +7,163 @@
 import SwiftUI
 import PencilKit
 
+
 struct LogoView: View {
+    @State private var isAnimating = false
+    let idiom: UIUserInterfaceIdiom
+    
+    private let gradientColors = [
+        Color(red: 0.94, green: 0.42, blue: 0.84),  // Vibrant Pink (#F06BD6)
+        Color(red: 0.47, green: 0.29, blue: 0.98),  // Electric Purple (#784BFA)
+        Color(red: 0.24, green: 0.71, blue: 0.96)   // Bright Blue (#3DB6F5)
+    ]
+    
+    init(idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
+        self.idiom = idiom
+    }
+    
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text("SketchAI")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+        HStack(spacing: 15) {
+            // Logo Symbol
+            ZStack {
+                // Animated background circles
+                ForEach(0..<3) { index in
+                    Circle()
+                        .fill(
+                            AngularGradient(
+                                gradient: Gradient(colors: gradientColors),
+                                center: .center
+                            )
+                        )
+                        .frame(width: idiom == .pad ? 50 : 40, height: idiom == .pad ? 50 : 40)
+                        .offset(x: isAnimating ? 2 : -2, y: isAnimating ? -2 : 2)
+                        .animation(
+                            Animation.easeInOut(duration: 2)
+                                .repeatForever(autoreverses: true)
+                                .delay(Double(index) * 0.3),
+                            value: isAnimating
+                        )
+                }
                 
-                Text("empowering digital artists")
-                    .font(.system(size: 12, weight: .light, design: .rounded))
-                    .foregroundColor(.white.opacity(0.8))
+                // Pencil icon
+                Image(systemName: "pencil.tip")
+                    .font(.system(size: idiom == .pad ? 30 : 24, weight: .bold))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                    .rotationEffect(.degrees(isAnimating ? 360 : 0))
+                    .animation(
+                        Animation.linear(duration: 8)
+                            .repeatForever(autoreverses: false),
+                        value: isAnimating
+                    )
             }
-            .padding(.horizontal)
+            .frame(width: idiom == .pad ? 60 : 50, height: idiom == .pad ? 60 : 50)
+            
+            // Text content
+            VStack(alignment: .leading, spacing: 4) {
+                // App name with modern gradient
+                Text("SketchAI")
+                    .font(.system(size: idiom == .pad ? 34 : 28, weight: .bold, design: .rounded))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: gradientColors,
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                
+                // Tagline with glass effect
+                Text("Empowering Digital Artists")
+                    .font(.system(size: idiom == .pad ? 14 : 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(.white.opacity(0.2))
+                            .blur(radius: 0.5)
+                    )
+            }
             
             Spacer()
+            
+            // iPad-specific additional controls
+            if idiom == .pad {
+                HStack(spacing: 20) {
+                    Button(action: {}) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Button(action: {}) {
+                        Image(systemName: "gear")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding(.horizontal)
+            }
         }
-        .frame(height: 60)
+        .padding(.horizontal, idiom == .pad ? 30 : 20)
+        .padding(.vertical, idiom == .pad ? 15 : 10)
         .background(
-            LinearGradient(
-                gradient: Gradient(colors: [Color.black.opacity(0.7), Color.black.opacity(0.3)]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            ZStack {
+                // Dynamic background with more vibrant dark gradient
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.13, green: 0.13, blue: 0.28),  // Rich Dark Blue (#212147)
+                        Color(red: 0.08, green: 0.08, blue: 0.20)   // Deep Dark Blue (#14143C)
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                
+                // Enhanced pattern overlay
+                GeometryReader { geometry in
+                    Path { path in
+                        for i in stride(from: 0, to: geometry.size.width, by: 20) {
+                            path.move(to: CGPoint(x: i, y: 0))
+                            path.addLine(to: CGPoint(x: i + 10, y: geometry.size.height))
+                        }
+                    }
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.94, green: 0.42, blue: 0.84).opacity(0.1),  // Pink glow
+                                Color(red: 0.24, green: 0.71, blue: 0.96).opacity(0.05)  // Blue glow
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ),
+                        lineWidth: 0.5
+                    )
+                }
+            }
         )
+        .overlay(
+            RoundedRectangle(cornerRadius: 0)
+                .stroke(
+                    LinearGradient(
+                        colors: [
+                            Color(red: 0.94, green: 0.42, blue: 0.84).opacity(0.3),  // Pink highlight
+                            .clear
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ),
+                    lineWidth: 1
+                )
+        )
+        .onAppear {
+            isAnimating = true
+        }
     }
 }
+
 class CanvasManager: ObservableObject {
     @Published var canvasView: PKCanvasView
-    @Published var drawing: PKDrawing // Removed private(set)
+    @Published var drawing: PKDrawing
     private var toolPicker: PKToolPicker?
     
     init() {
@@ -47,17 +175,9 @@ class CanvasManager: ObservableObject {
     private func setupCanvas() {
         canvasView.drawingPolicy = .anyInput
         canvasView.backgroundColor = .white
-        canvasView.maximumZoomScale = 1.0
+        canvasView.maximumZoomScale = 5.0
         canvasView.minimumZoomScale = 1.0
         canvasView.drawing = drawing
-    }
-    
-    var canUndo: Bool {
-        canvasView.undoManager?.canUndo ?? false
-    }
-    
-    var canRedo: Bool {
-        canvasView.undoManager?.canRedo ?? false
     }
     
     func setupToolPicker() {
@@ -67,33 +187,6 @@ class CanvasManager: ObservableObject {
         
         DispatchQueue.main.async {
             self.canvasView.becomeFirstResponder()
-        }
-    }
-    
-    func updateColor(_ color: Color) {
-        DispatchQueue.main.async {
-            self.canvasView.tool = PKInkingTool(.pen, color: UIColor(color), width: 1.0)
-        }
-    }
-    
-    func undo() {
-        DispatchQueue.main.async {
-            self.canvasView.undoManager?.undo()
-            self.drawing = self.canvasView.drawing
-        }
-    }
-    
-    func redo() {
-        DispatchQueue.main.async {
-            self.canvasView.undoManager?.redo()
-            self.drawing = self.canvasView.drawing
-        }
-    }
-    
-    func clearCanvas() {
-        DispatchQueue.main.async {
-            self.drawing = PKDrawing()
-            self.canvasView.drawing = self.drawing
         }
     }
 }
@@ -106,9 +199,13 @@ struct CanvasView: UIViewRepresentable {
         canvas.delegate = context.coordinator
         canvas.drawingPolicy = .anyInput
         canvas.backgroundColor = .white
-        canvas.maximumZoomScale = 1.0
+        canvas.maximumZoomScale = 5.0
         canvas.minimumZoomScale = 1.0
         canvas.drawing = canvasManager.drawing
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            canvas.allowsFingerDrawing = true
+        }
         
         return canvas
     }
@@ -142,8 +239,7 @@ struct CanvasView: UIViewRepresentable {
 
 struct ContentView: View {
     @StateObject private var canvasManager = CanvasManager()
-    @State private var selectedColor: Color = .black
-    @State private var showingColorPicker = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         ZStack {
@@ -154,114 +250,8 @@ struct ContentView: View {
                 }
             
             VStack {
-                LogoView()
-                
+                LogoView(idiom: UIDevice.current.userInterfaceIdiom)
                 Spacer()
-                
-                HStack(spacing: 20) {
-                    Button(action: { showingColorPicker.toggle() }) {
-                        Circle()
-                            .fill(selectedColor)
-                            .frame(width: 44, height: 44)
-                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                            .shadow(radius: 2)
-                    }
-                    
-                    Divider()
-                        .frame(height: 30)
-                        .background(Color.white)
-                    
-                    Button(action: canvasManager.undo) {
-                        Image(systemName: "arrow.uturn.backward.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                    }
-                    .disabled(!canvasManager.canUndo)
-                    
-                    Button(action: canvasManager.redo) {
-                        Image(systemName: "arrow.uturn.forward.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                    }
-                    .disabled(!canvasManager.canRedo)
-                    
-                    Divider()
-                        .frame(height: 30)
-                        .background(Color.white)
-                    
-                    Button(action: canvasManager.clearCanvas) {
-                        Image(systemName: "trash.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.black.opacity(0.7))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                        )
-                )
-                .shadow(radius: 10)
-                .padding(.bottom, 30)
-            }
-        }
-        .sheet(isPresented: $showingColorPicker) {
-            ColorPickerView(selectedColor: $selectedColor)
-        }
-        .onChange(of: selectedColor) { newColor in
-            canvasManager.updateColor(newColor)
-        }
-    }
-}
-
-struct ColorPickerView: View {
-    @Binding var selectedColor: Color
-    @Environment(\.dismiss) var dismiss
-    
-    let colors: [[Color]] = [
-        [.black, .gray, .white],
-        [.red, .orange, .yellow],
-        [.green, .blue, .purple],
-        [.pink, .brown, .mint]
-    ]
-    
-    var body: some View {
-        NavigationView {
-            VStack(spacing: 20) {
-                ForEach(colors, id: \.self) { row in
-                    HStack(spacing: 20) {
-                        ForEach(row, id: \.self) { color in
-                            Circle()
-                                .fill(color)
-                                .frame(width: 60, height: 60)
-                                .overlay(
-                                    Circle()
-                                        .stroke(color == selectedColor ? Color.blue : Color.clear, lineWidth: 3)
-                                )
-                                .shadow(radius: 2)
-                                .onTapGesture {
-                                    selectedColor = color
-                                    dismiss()
-                                }
-                        }
-                    }
-                }
-                
-                ColorPicker("Custom Color", selection: $selectedColor)
-                    .padding()
-            }
-            .padding()
-            .navigationTitle("Select Color")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
             }
         }
     }
@@ -269,6 +259,14 @@ struct ColorPickerView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+                .previewDisplayName("iPhone 14 Pro")
+            
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (6th generation)"))
+                .previewDisplayName("iPad Pro 12.9\"")
+        }
     }
 }
