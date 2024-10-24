@@ -4,15 +4,170 @@
 //
 //  Created by Kevin Fred  on 20/10/24.
 //
+
 import SwiftUI
 import PencilKit
+import UniformTypeIdentifiers
 
+// MARK: - Logo View (Existing)
+struct LogoView: View {
+    @State private var isAnimating = false
+    let idiom: UIUserInterfaceIdiom
+    
+    private let gradientColors = [
+        Color(red: 0.94, green: 0.42, blue: 0.84),  // Vibrant Pink (#F06BD6)
+        Color(red: 0.47, green: 0.29, blue: 0.98),  // Electric Purple (#784BFA)
+        Color(red: 0.24, green: 0.71, blue: 0.96)   // Bright Blue (#3DB6F5)
+    ]
+    
+    init(idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
+        self.idiom = idiom
+    }
+    
+    var body: some View {
+        HStack(spacing: 15) {
+            // Logo Symbol
+            ZStack {
+                // Animated background circles
+                ForEach(0..<3) { index in
+                    Circle()
+                        .fill(
+                            AngularGradient(
+                                gradient: Gradient(colors: gradientColors),
+                                center: .center
+                            )
+                        )
+                        .frame(width: idiom == .pad ? 50 : 40, height: idiom == .pad ? 50 : 40)
+                        .offset(x: isAnimating ? 2 : -2, y: isAnimating ? -2 : 2)
+                        .animation(
+                            Animation.easeInOut(duration: 2)
+                                .repeatForever(autoreverses: true)
+                                .delay(Double(index) * 0.3),
+                            value: isAnimating
+                        )
+                }
+                
+                // Pencil icon
+                Image(systemName: "pencil.tip")
+                    .font(.system(size: idiom == .pad ? 30 : 24, weight: .bold))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                    .rotationEffect(.degrees(isAnimating ? 360 : 0))
+                    .animation(
+                        Animation.linear(duration: 8)
+                            .repeatForever(autoreverses: false),
+                        value: isAnimating
+                    )
+            }
+            .frame(width: idiom == .pad ? 60 : 50, height: idiom == .pad ? 60 : 50)
+            
+            // Text content
+            VStack(alignment: .leading, spacing: 4) {
+                // App name with modern gradient
+                Text("SketchAI")
+                    .font(.system(size: idiom == .pad ? 34 : 28, weight: .bold, design: .rounded))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: gradientColors,
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                
+                // Tagline with glass effect
+                Text("Empowering Digital Artists")
+                    .font(.system(size: idiom == .pad ? 14 : 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(.white.opacity(0.2))
+                            .blur(radius: 0.5)
+                    )
+            }
+            
+            Spacer()
+            
+            // iPad-specific additional controls
+            if idiom == .pad {
+                HStack(spacing: 20) {
+                    Button(action: {}) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Button(action: {}) {
+                        Image(systemName: "gear")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+        .padding(.horizontal, idiom == .pad ? 30 : 20)
+        .padding(.vertical, idiom == .pad ? 15 : 10)
+        .background(
+            ZStack {
+                // Dynamic background with more vibrant dark gradient
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.13, green: 0.13, blue: 0.28),  // Rich Dark Blue (#212147)
+                        Color(red: 0.08, green: 0.08, blue: 0.20)   // Deep Dark Blue (#14143C)
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                
+                // Enhanced pattern overlay
+                GeometryReader { geometry in
+                    Path { path in
+                        for i in stride(from: 0, to: geometry.size.width, by: 20) {
+                            path.move(to: CGPoint(x: i, y: 0))
+                            path.addLine(to: CGPoint(x: i + 10, y: geometry.size.height))
+                        }
+                    }
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.94, green: 0.42, blue: 0.84).opacity(0.1),  // Pink glow
+                                Color(red: 0.24, green: 0.71, blue: 0.96).opacity(0.05)  // Blue glow
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ),
+                        lineWidth: 0.5
+                    )
+                }
+            }
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 0)
+                .stroke(
+                    LinearGradient(
+                        colors: [
+                            Color(red: 0.94, green: 0.42, blue: 0.84).opacity(0.3),  // Pink highlight
+                            .clear
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ),
+                    lineWidth: 1
+                )
+        )
+        .onAppear {
+            isAnimating = true
+        }
+    }
+}
 
-
-// MARK: - Canvas Manager
+// MARK: - Canvas Manager (Enhanced)
 class CanvasManager: ObservableObject {
     @Published var canvasView: PKCanvasView
     @Published var drawing: PKDrawing
+    @Published var selectedTool: Tool = .brush
     private var toolPicker: PKToolPicker?
     
     init() {
@@ -22,7 +177,7 @@ class CanvasManager: ObservableObject {
     }
     
     private func setupCanvas() {
-        canvasView.drawingPolicy = .pencilOnly
+        canvasView.drawingPolicy = .pencilOnly // Changed to pencilOnly
         canvasView.backgroundColor = .white
         canvasView.maximumZoomScale = 5.0
         canvasView.minimumZoomScale = 1.0
@@ -39,23 +194,25 @@ class CanvasManager: ObservableObject {
         }
     }
     
-    func toggleToolPicker(isVisible: Bool) {
-        toolPicker?.setVisible(isVisible, forFirstResponder: canvasView)
+    func updateTool(_ tool: Tool) {
+        selectedTool = tool
+        // Implement tool-specific settings
     }
 }
 
-// MARK: - Canvas View
+// MARK: - Canvas View (Enhanced)
 struct CanvasView: UIViewRepresentable {
     @ObservedObject var canvasManager: CanvasManager
     
     func makeUIView(context: Context) -> PKCanvasView {
         let canvas = canvasManager.canvasView
         canvas.delegate = context.coordinator
-        canvas.drawingPolicy = .pencilOnly
+        canvas.drawingPolicy = .pencilOnly // Changed to pencilOnly
         canvas.backgroundColor = .white
         canvas.maximumZoomScale = 5.0
         canvas.minimumZoomScale = 1.0
         canvas.drawing = canvasManager.drawing
+        
         return canvas
     }
     
@@ -86,6 +243,96 @@ struct CanvasView: UIViewRepresentable {
     }
 }
 
+
+// MARK: - Tool Management
+enum Tool: String, CaseIterable, Identifiable {
+    var id: String { rawValue }
+    
+    // Drawing Tools
+    case brush = "Brush"
+    case pencil = "Pencil"
+    case pen = "Pen"
+    case eraser = "Eraser"
+    case fill = "Fill"
+    
+    // Selection Tools
+    case rectangleSelect = "Rectangle Select"
+    case ellipseSelect = "Ellipse Select"
+    case lassoSelect = "Lasso Select"
+    case magicWand = "Magic Wand"
+    
+    // Shape Tools
+    case rectangle = "Rectangle"
+    case circle = "Circle"
+    case line = "Line"
+    case polygon = "Polygon"
+    case star = "Star"
+    
+    // Effect Tools
+    case blur = "Blur"
+    case sharpen = "Sharpen"
+    case smudge = "Smudge"
+    case clone = "Clone"
+    
+    // Utility Tools
+    case move = "Move"
+    case text = "Text"
+    case eyedropper = "Eyedropper"
+    case hand = "Hand"
+    case zoom = "Zoom"
+    
+    var icon: String {
+        switch self {
+        case .brush: return "paintbrush.pointed.fill"
+        case .pencil: return "pencil"
+        case .pen: return "pencil.tip"
+        case .eraser: return "eraser.fill"
+        case .fill: return "paintbrush.fill"
+        case .rectangleSelect: return "selection"
+        case .ellipseSelect: return "circle.dotted"
+        case .lassoSelect: return "lasso"
+        case .magicWand: return "wand.and.stars"
+        case .rectangle: return "rectangle"
+        case .circle: return "circle"
+        case .line: return "line.diagonal"
+        case .polygon: return "hexagon"
+        case .star: return "star"
+        case .blur: return "blur"
+        case .sharpen: return "diamond.fill"
+        case .smudge: return "hand.draw.fill"
+        case .clone: return "stamp"
+        case .move: return "arrow.up.and.down.and.arrow.left.and.right"
+        case .text: return "text.cursor"
+        case .eyedropper: return "eyedropper.halffull"
+        case .hand: return "hand.raised"
+        case .zoom: return "magnifyingglass"
+        }
+    }
+    
+    var group: ToolGroup {
+        switch self {
+        case .brush, .pencil, .pen, .eraser, .fill:
+            return .drawing
+        case .rectangleSelect, .ellipseSelect, .lassoSelect, .magicWand:
+            return .selection
+        case .rectangle, .circle, .line, .polygon, .star:
+            return .shape
+        case .blur, .sharpen, .smudge, .clone:
+            return .effect
+        case .move, .text, .eyedropper, .hand, .zoom:
+            return .utility
+        }
+    }
+}
+
+enum ToolGroup: String, CaseIterable {
+    case drawing = "Drawing"
+    case selection = "Selection"
+    case shape = "Shape"
+    case effect = "Effect"
+    case utility = "Utility"
+}
+
 // MARK: - Layer Management
 struct Layer: Identifiable {
     let id = UUID()
@@ -93,6 +340,29 @@ struct Layer: Identifiable {
     var isVisible: Bool = true
     var opacity: Double = 1.0
     var drawing: PKDrawing = PKDrawing()
+    var blendMode: LayerBlendMode = .normal
+    var isLocked: Bool = false
+    var type: LayerType
+}
+
+enum LayerType {
+    case drawing
+    case image(UIImage?)
+    case shape(ShapeType)
+    case text(String)
+    case adjustment(AdjustmentType)
+}
+
+enum LayerBlendMode {
+    case normal, multiply, screen, overlay, softLight, hardLight
+}
+
+enum AdjustmentType {
+    case brightness, contrast, saturation, exposure
+}
+
+enum ShapeType {
+    case rectangle, circle, triangle, line, polygon, star
 }
 
 class LayerManager: ObservableObject {
@@ -100,11 +370,12 @@ class LayerManager: ObservableObject {
     @Published var selectedLayerIndex: Int = 0
     
     init() {
-        addLayer(name: "Background")
+        // Add initial background layer
+        addLayer(name: "Background", type: .drawing)
     }
     
-    func addLayer(name: String) {
-        layers.append(Layer(name: name))
+    func addLayer(name: String, type: LayerType) {
+        layers.append(Layer(name: name, type: type))
         selectedLayerIndex = layers.count - 1
     }
     
@@ -122,187 +393,199 @@ class LayerManager: ObservableObject {
         layers[index].isVisible.toggle()
     }
     
+    func toggleLock(at index: Int) {
+        layers[index].isLocked.toggle()
+    }
+    
     func updateOpacity(at index: Int, opacity: Double) {
         layers[index].opacity = opacity
     }
-}
-
-// MARK: - Art Tools
-enum ArtTool: String, CaseIterable, Identifiable {
-    var id: String { rawValue }
     
-    case brush = "Brush"
-    case pencil = "Pencil"
-    case eraser = "Eraser"
-    case smudge = "Smudge"
-    case eyedropper = "Color Picker"
-    case selection = "Selection"
-    case move = "Move"
-    case crop = "Crop"
-    case shapes = "Shapes"
-    case text = "Text"
-    case gradient = "Gradient"
-    case bucket = "Fill"
-    case blend = "Blend"
-    case ruler = "Ruler"
-    case symmetry = "Symmetry"
-    
-    var icon: String {
-        switch self {
-        case .brush: return "paintbrush"
-        case .pencil: return "pencil.tip"
-        case .eraser: return "eraser"
-        case .smudge: return "hand.draw"
-        case .eyedropper: return "eyedropper.halffull"
-        case .selection: return "lasso"
-        case .move: return "arrow.up.and.down.and.arrow.left.and.right"
-        case .crop: return "crop"
-        case .shapes: return "square.on.circle"
-        case .text: return "textformat"
-        case .gradient: return "gradient"
-        case .bucket: return "paintbrush.fill"
-        case .blend: return "drop.fill"
-        case .ruler: return "ruler"
-        case .symmetry: return "arrow.left.and.right.circle"
-        }
+    func updateBlendMode(at index: Int, blendMode: LayerBlendMode) {
+        layers[index].blendMode = blendMode
     }
 }
 
-// MARK: - Header View
-struct HeaderView: View {
-    @Binding var symmetryEnabled: Bool
-    @Binding var symmetryValue: Double
-    let canUndo: Bool
-    let canRedo: Bool
-    let onUndo: () -> Void
-    let onRedo: () -> Void
-    @Environment(\.colorScheme) var colorScheme
+// MARK: - Tool Settings View
+struct ToolSettingsView: View {
+    @ObservedObject var toolManager: ToolManager
     
     var body: some View {
-        ZStack {
-            // Background
-            Color(UIColor.systemBackground)
-                .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
-            
-            // Content
-            HStack(spacing: 16) {
-                // Back button
-                Button(action: {}) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.primary)
-                        .font(.system(size: 18, weight: .medium))
-                }
-                
-                Divider()
-                    .frame(height: 24)
-                
-                // Symmetry Controls
-                Menu {
-                    Button("Vertical Symmetry", action: { symmetryEnabled.toggle() })
-                    Button("Horizontal Symmetry", action: { symmetryEnabled.toggle() })
-                    Button("Radial Symmetry", action: { symmetryEnabled.toggle() })
-                } label: {
-                    HStack(spacing: 4) {
-                        Text("Symmetry")
-                            .foregroundColor(.primary)
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 12, weight: .medium))
-                    }
-                }
-                
-                Slider(value: $symmetryValue, in: 0...100)
-                    .frame(width: 120)
-                
-                Text("\(Int(symmetryValue))%")
-                    .monospacedDigit()
-                    .foregroundColor(.primary)
-                    .frame(width: 44, alignment: .leading)
-                
-                Spacer()
-                
-                // Right side controls
-                HStack(spacing: 20) {
-                    Button(action: onUndo) {
-                        Image(systemName: "arrow.uturn.backward")
-                            .foregroundColor(canUndo ? .primary : .primary.opacity(0.3))
-                    }
-                    .disabled(!canUndo)
-                    
-                    Button(action: onRedo) {
-                        Image(systemName: "arrow.uturn.forward")
-                            .foregroundColor(canRedo ? .primary : .primary.opacity(0.3))
-                    }
-                    .disabled(!canRedo)
-                    
-                    Button(action: {}) {
-                        Image(systemName: "questionmark.circle")
-                    }
-                    
-                    Button(action: {}) {
-                        Image(systemName: "person.circle")
-                    }
-                    
-                    Button(action: {}) {
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    
-                    Button(action: {}) {
-                        Image(systemName: "gearshape")
-                    }
-                }
-                .foregroundColor(.primary)
-                .font(.system(size: 18))
+        VStack(spacing: 8) {
+            HStack {
+                Text("Size")
+                Slider(value: $toolManager.brushSize, in: 1...100)
             }
-            .padding(.horizontal)
-            .frame(height: 44)
+            
+            HStack {
+                Text("Opacity")
+                Slider(value: $toolManager.opacity, in: 0...1)
+            }
+            
+            HStack {
+                Text("Color")
+                ColorPicker("", selection: $toolManager.color)
+            }
         }
-        .frame(height: 44)
+        .padding()
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(8)
     }
 }
 
-// MARK: - Enhanced Tool Bar
-struct CollapsibleToolBar: View {
-    @Binding var selectedTool: ArtTool
-    @Binding var isToolBarVisible: Bool
-    @Environment(\.colorScheme) var colorScheme
+// MARK: - Enhanced Toolbar View
+struct EnhancedToolbarView: View {
+    @ObservedObject var toolManager: ToolManager
+    @State private var showingSettings = false
     
     var body: some View {
-        HStack(spacing: 0) {
-            if isToolBarVisible {
-                ScrollView {
-                    VStack(spacing: 4) {
-                        ForEach(ArtTool.allCases) { tool in
-                            ToolButton(tool: tool, isSelected: selectedTool == tool) {
-                                selectedTool = tool
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 8) {
+                    ForEach(ToolGroup.allCases, id: \.self) { group in
+                        GroupBox(
+                            label: Text(group.rawValue)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        ) {
+                            LazyVGrid(columns: [GridItem(.flexible())], spacing: 4) {
+                                ForEach(Tool.allCases.filter { $0.group == group }) { tool in
+                                    ToolButton(
+                                        tool: tool,
+                                        isSelected: toolManager.selectedTool == tool,
+                                        action: {
+                                            toolManager.selectedTool = tool
+                                            if tool.group == .drawing {
+                                                showingSettings = true
+                                            }
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
-                    .padding(.vertical, 8)
                 }
-                .frame(width: 72)
-                .background(colorScheme == .dark ? Color.black.opacity(0.8) : Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .shadow(radius: 5)
+                .padding(.vertical, 8)
             }
             
-            Button(action: { withAnimation { isToolBarVisible.toggle() } }) {
-                Image(systemName: isToolBarVisible ? "chevron.left" : "chevron.right")
-                    .foregroundColor(.primary)
-                    .frame(width: 20, height: 44)
-                    .background(colorScheme == .dark ? Color.black.opacity(0.8) : Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-                    .shadow(radius: 3)
+            if showingSettings {
+                ToolSettingsView(toolManager: toolManager)
             }
-            .padding(.leading, 4)
         }
-        .padding(.leading, 8)
+        .frame(width: 80)
+        .background(Color(UIColor.systemBackground))
     }
 }
 
-// MARK: - Tool Button
+// MARK: - Layer Panel View
+struct LayerPanelView: View {
+    @ObservedObject var layerManager: LayerManager
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("Layers")
+                    .font(.headline)
+                Spacer()
+                Button(action: { addNewLayer() }) {
+                    Image(systemName: "plus")
+                }
+            }
+            .padding()
+            
+            List {
+                ForEach(Array(layerManager.layers.enumerated()), id: \.1.id) { index, layer in
+                    LayerRowView(
+                        layer: layer,
+                        isSelected: index == layerManager.selectedLayerIndex,
+                        onSelect: { layerManager.selectedLayerIndex = index },
+                        onToggleVisibility: { layerManager.toggleVisibility(at: index) },
+                        onUpdateOpacity: { layerManager.updateOpacity(at: index, opacity: $0) }
+                    )
+                }
+                .onMove { layerManager.moveLayers(from: $0, to: $1) }
+            }
+        }
+        .frame(width: 250)
+    }
+    
+    private func addNewLayer() {
+        layerManager.addLayer(name: "Layer \(layerManager.layers.count + 1)", type: .drawing)
+    }
+}
+
+// MARK: - Main Content View
+struct ContentView: View {
+    @StateObject private var canvasManager = CanvasManager()
+    @StateObject private var layerManager = LayerManager()
+    @StateObject private var toolManager = ToolManager()
+    @State private var showingLayers = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var body: some View {
+        NavigationView {
+            HStack(spacing: 0) {
+                // Left Toolbar
+                EnhancedToolbarView(toolManager: toolManager)
+                    .onChange(of: toolManager.selectedTool) { tool in
+                        canvasManager.updateTool(tool)
+                    }
+                
+                // Main Canvas
+                ZStack {
+                    CanvasView(canvasManager: canvasManager)
+                        .ignoresSafeArea()
+                        .onAppear {
+                            canvasManager.setupToolPicker()
+                        }
+                    
+                    VStack {
+                        LogoView(idiom: UIDevice.current.userInterfaceIdiom)
+                        Spacer()
+                    }
+                }
+                
+                // Right Layer Panel (iPad only)
+                if horizontalSizeClass == .regular {
+                    LayerPanelView(layerManager: layerManager)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if horizontalSizeClass != .regular {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: { showingLayers.toggle() }) {
+                            Image(systemName: "square.on.square")
+                        }
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showingLayers) {
+            NavigationView {
+                LayerPanelView(layerManager: layerManager)
+                    .navigationTitle("Layers")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Done") { showingLayers = false }
+                        }
+                    }
+            }
+        }
+    }
+}
+
+// MARK: - Supporting Views and Classes
+class ToolManager: ObservableObject {
+    @Published var selectedTool: Tool = .brush
+    @Published var brushSize: Double = 1.0
+    @Published var opacity: Double = 1.0
+    @Published var color: Color = .black
+}
+
 struct ToolButton: View {
-    let tool: ArtTool
+    let tool: Tool
     let isSelected: Bool
     let action: () -> Void
     
@@ -317,7 +600,7 @@ struct ToolButton: View {
                     .font(.system(size: 9))
                     .foregroundColor(isSelected ? .blue : .primary)
             }
-            .frame(width: 60, height: 50)
+            .frame(width: 60, height: 60)
             .background(
                 RoundedRectangle(cornerRadius: 8)
                     .fill(isSelected ? Color.blue.opacity(0.2) : Color.clear)
@@ -326,57 +609,7 @@ struct ToolButton: View {
     }
 }
 
-
-// MARK: - Layer Panel
-struct LayerPanelView: View {
-    @ObservedObject var layerManager: LayerManager
-    @Binding var isVisible: Bool
-    
-    var body: some View {
-        HStack(spacing: 0) {
-            if isVisible {
-                VStack {
-                    HStack {
-                        Text("Layers")
-                            .font(.headline)
-                        Spacer()
-                        Button(action: { layerManager.addLayer(name: "Layer \(layerManager.layers.count + 1)") }) {
-                            Image(systemName: "plus")
-                        }
-                    }
-                    .padding()
-                    
-                    List {
-                        ForEach(Array(layerManager.layers.enumerated()), id: \.element.id) { index, layer in
-                            LayerRow(
-                                layer: layer,
-                                isSelected: index == layerManager.selectedLayerIndex,
-                                onSelect: { layerManager.selectedLayerIndex = index },
-                                onToggleVisibility: { layerManager.toggleVisibility(at: index) },
-                                onUpdateOpacity: { layerManager.updateOpacity(at: index, opacity: $0) }
-                            )
-                        }
-                        .onMove { layerManager.moveLayers(from: $0, to: $1) }
-                    }
-                }
-                .frame(width: 250)
-                .background(Color(UIColor.systemBackground))
-            }
-            
-            Button(action: { withAnimation { isVisible.toggle() } }) {
-                Image(systemName: isVisible ? "chevron.right" : "chevron.left")
-                    .foregroundColor(.primary)
-                    .frame(width: 20, height: 44)
-                    .background(Color(UIColor.systemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-                    .shadow(radius: 3)
-            }
-        }
-        .padding(.trailing, 8)
-    }
-}
-
-struct LayerRow: View {
+struct LayerRowView: View {
     let layer: Layer
     let isSelected: Bool
     let onSelect: () -> Void
@@ -395,97 +628,13 @@ struct LayerRow: View {
             
             Slider(value: Binding(
                 get: { layer.opacity },
-                set: onUpdateOpacity
+                set: { onUpdateOpacity($0) }
             ), in: 0...1)
             .frame(width: 80)
         }
         .padding(.vertical, 4)
         .background(isSelected ? Color.blue.opacity(0.2) : Color.clear)
+        .cornerRadius(6)
         .onTapGesture(perform: onSelect)
-    }
-}
-
-// MARK: - Main Content View
-struct ContentView: View {
-    @StateObject private var canvasManager = CanvasManager()
-    @StateObject private var layerManager = LayerManager()
-    @State private var selectedTool: ArtTool = .brush
-    @State private var isToolBarVisible = true
-    @State private var isLayerPanelVisible = true
-    @State private var isPencilKitToolPickerVisible = true
-    
-    // Header states
-    @State private var symmetryEnabled = false
-    @State private var symmetryValue: Double = 63
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            // Status Bar spacer
-            Color.clear
-                .frame(height: UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0)
-            
-            // Header
-            HeaderView(
-                symmetryEnabled: $symmetryEnabled,
-                symmetryValue: $symmetryValue,
-                canUndo: canvasManager.canvasView.undoManager?.canUndo ?? false,
-                canRedo: canvasManager.canvasView.undoManager?.canRedo ?? false,
-                onUndo: { canvasManager.canvasView.undoManager?.undo() },
-                onRedo: { canvasManager.canvasView.undoManager?.redo() }
-            )
-            
-            // Main Content
-            HStack(spacing: 0) {
-                // Left Toolbar
-                CollapsibleToolBar(
-                    selectedTool: $selectedTool,
-                    isToolBarVisible: $isToolBarVisible
-                )
-                
-                // Main Canvas
-                ZStack {
-                    CanvasView(canvasManager: canvasManager)
-                        .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
-                        .onAppear {
-                            canvasManager.setupToolPicker()
-                        }
-                    
-                    // PencilKit Tool Picker Toggle
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                withAnimation {
-                                    isPencilKitToolPickerVisible.toggle()
-                                    canvasManager.toggleToolPicker(isVisible: isPencilKitToolPickerVisible)
-                                }
-                            }) {
-                                Image(systemName: isPencilKitToolPickerVisible ? "chevron.up" : "chevron.down")
-                                    .foregroundColor(.primary)
-                                    .padding(8)
-                                    .background(Color(UIColor.systemBackground))
-                                    .clipShape(Circle())
-                                    .shadow(radius: 3)
-                            }
-                            .padding()
-                        }
-                        Spacer()
-                    }
-                }
-                
-                // Right Layer Panel
-                LayerPanelView(
-                    layerManager: layerManager,
-                    isVisible: $isLayerPanelVisible
-                )
-            }
-        }
-        .ignoresSafeArea(.keyboard)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
